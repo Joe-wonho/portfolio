@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 // import xBtn from '../../assets/png-file/x-btn.png';
 import { IViewDetail } from '../Projects/data';
 
-const BackgroundModal = styled.div`
+const ModalBox = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -12,25 +12,43 @@ const BackgroundModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   background-color: rgba(0, 0, 0, 0.6);
+  white-space: pre-line;
 `;
 
-const ModalBox = styled.div`
+const ModalBody = styled.div`
   display: flex;
-  padding: 10px;
-  width: 200px;
-  height: 200px;
-  background-color: white;
-  opacity: 0;
-  transition: opacity 3s ease-in-out;
-  &.open {
-    opacity: 1;
-    transition: opacity 3s ease-in-out;
+  position: absolute;
+  padding-left: 2.2px;
+  /* transition: opacity 3s ease-in-out;
+  opacity: ${(modalOpen) => (modalOpen ? '1' : '0')}; */
+  .x-img {
+    width: 70px;
+    height: 82.25px;
+    position: absolute;
+    left: 97.8%;
+    top: 8.4%;
   }
+
   @media all and (min-width: 768px) and (max-width: 1023px) {
+    .x-img {
+      width: 65px;
+      height: 77px;
+      position: absolute;
+      left: 96.7%;
+      top: 6.4%;
+    }
   }
 
   @media all and (max-width: 767px) {
+    .x-img {
+      width: 48px;
+      height: 57px;
+      position: absolute;
+      left: 95.5%;
+      top: 6.8%;
+    }
   }
 `;
 
@@ -223,9 +241,73 @@ const DetailModal = ({ id, modalOpen, setModal, viewDetail }: IViewDetailProps) 
   };
 
   return (
-    <BackgroundModal>
-      <ModalBox className={modalOpen ? 'open' : undefined} ref={modalRef}></ModalBox>
-    </BackgroundModal>
+    <ModalBox>
+      <ModalBody ref={modalRef}>
+        <DetailModalBox num={id}>
+          <div className='title-box'>
+            <h3 className='title'>{title}</h3>
+            <div className='lilac-line'></div>
+          </div>
+          <MeaningSummaryBackgroung>
+            {/* Meaning */}
+            <Meaning>
+              <div className='meaning'>
+                <span className='sub-title'>Meaning</span>
+              </div>
+              <p className='meaning-content content'>{meaningContent}</p>
+              <p className='link-stacks content'>
+                ⦁ 배포 링크:{' '}
+                <a className='link' rel='noreferrer' href={deploLink} target='_blank'>
+                  {deploTxt}
+                </a>
+                <>
+                  {storyLink && storyTxt && (
+                    <>
+                      <br />⦁ Storybook 링크:{' '}
+                      <a className='link' rel='noreferrer' href={storyLink} target='_blank'>
+                        {storyTxt}
+                      </a>
+                    </>
+                  )}
+                </>
+                <br />⦁ GitHub 링크:{' '}
+                <a className='link' rel='noreferrer' href={githubLink} target='_blank'>
+                  {githubTxt}
+                </a>
+                <br />⦁ 기술 스택: {stacks}
+              </p>
+            </Meaning>
+
+            {/* Summary */}
+            <Summary>
+              <div className='summary'>
+                <span className='sub-title'>Summary</span>
+              </div>
+              <p className='summary-content content'>{summarygContent}</p>
+
+              <div className='features-txt content'>
+                <span className='purple-txt'>★</span> 주요 기능
+              </div>
+              <p className='features content'>{featuresContent}</p>
+            </Summary>
+
+            {/* Background */}
+            <Background>
+              <div className='background'>
+                <span className='sub-title'>Background</span>
+              </div>
+              <p className='background-des content'>{backgroundContent}</p>
+            </Background>
+          </MeaningSummaryBackgroung>
+        </DetailModalBox>
+
+        {/* 모달 닫는 버튼 */}
+        <button className='x-btn' onClick={onClickCloseBtn}>
+          <p className='x-img'>x</p>
+          {/* <img className='x-img' src={xBtn} alt='close' /> */}
+        </button>
+      </ModalBody>
+    </ModalBox>
   );
 };
 
