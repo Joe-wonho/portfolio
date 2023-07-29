@@ -48,22 +48,22 @@ const MoreDetailBtnBox = styled.div`
 `;
 
 interface IMoreDetailProps {
-  openViewDetail: boolean;
-  setOpenViewDetail: React.Dispatch<React.SetStateAction<boolean>>;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const MoreDetail = ({ openViewDetail, setOpenViewDetail }: IMoreDetailProps) => {
-  const handleViewDetailModal = () => {
-    setOpenViewDetail(!openViewDetail);
-  };
-
+const MoreDetailBtn = ({ setModal }: IMoreDetailProps) => {
   return (
     <MoreDetailBtnBox>
-      <button className='more-btn' onClick={handleViewDetailModal}>
+      <button
+        className='more-btn'
+        onClick={() => {
+          setModal(true);
+        }}
+      >
         More Details
       </button>
     </MoreDetailBtnBox>
   );
 };
 
-export default MoreDetail;
+export default MoreDetailBtn;

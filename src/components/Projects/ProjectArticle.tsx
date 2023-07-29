@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import check from './../../assets/png-file/check.png';
 
-import MoreDetailBtn from './MoreBtn';
+import MoreDetailBtn from './MoreDetailBtn';
 import { IProjectData } from './data';
-
+import DetailModal from '../Modal/DetailModal';
 const ProjectArticleBox = styled.article`
   display: flex;
   flex-wrap: wrap;
@@ -220,17 +220,15 @@ const ProjectArticle = ({
   deploTxt,
   viewDetail,
 }: IProjectData) => {
-  const [openViewDetail, setOpenViewDetail] = useState(false);
+  const [modalOpen, setModal] = useState(false);
 
   return (
     <>
       <ProjectArticleBox className='project-article'>
-        {/* 왼쪽 사진 */}
         <div className='left-box'>
           <img className='left-img' src={img} alt='lumian' />
         </div>
 
-        {/* 오른쪽 텍스트 */}
         <RightBox>
           <p className='date'>{date}</p>
           <p className='project-name'>{title}</p>
@@ -242,9 +240,6 @@ const ProjectArticle = ({
           </div>
           <p className='project-des'>{content}</p>
 
-          {/* <MoreDetailBtn openViewDetail={openViewDetail} setOpenViewDetail={setOpenViewDetail} /> */}
-
-          {/* 주요 기능 및 링크들 */}
           <FeaturesAndLink>
             <div className='features'>
               <div className='check-box'>
@@ -270,11 +265,12 @@ const ProjectArticle = ({
               </a>
             </div>
             <div className='more-btn'>
-              <MoreDetailBtn openViewDetail={openViewDetail} setOpenViewDetail={setOpenViewDetail} />
+              <MoreDetailBtn setModal={setModal} />
             </div>
           </FeaturesAndLink>
         </RightBox>
       </ProjectArticleBox>
+      {modalOpen && <DetailModal id={id} viewDetail={viewDetail} modalOpen={modalOpen} setModal={setModal} />}
     </>
   );
 };
