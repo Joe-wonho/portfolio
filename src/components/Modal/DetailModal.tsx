@@ -2,35 +2,44 @@ import styled from 'styled-components';
 import { useRef, useEffect } from 'react';
 // import xBtn from '../../assets/png-file/x-btn.png';
 import { IViewDetail } from '../Projects/data';
-
-const BackgroundModal = styled.div`
+import useBodyScrollLock from './useBodyScrollLock';
+const Container = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  transition: all 0.3s linear;
+  width: 100%;
+  height: 100%;
+  &.modal-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  &.modal-hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
 `;
 
 const ModalBox = styled.div`
   display: flex;
   padding: 10px;
-  width: 200px;
+  width: 900px;
   height: 200px;
   background-color: white;
-  opacity: 0;
-  transition: opacity 3s ease-in-out;
-  &.open {
-    opacity: 1;
-    transition: opacity 3s ease-in-out;
-  }
+  z-index: 10;
   @media all and (min-width: 768px) and (max-width: 1023px) {
+    width: 620px;
   }
 
-  @media all and (max-width: 767px) {
+  @media all and (min-width: 480px) and (max-width: 767px) {
+    width: 460px;
+  }
+  @media all and (max-width: 479px) {
+    width: 320px;
   }
 `;
 
@@ -189,6 +198,7 @@ interface IViewDetailProps {
 
 const DetailModal = ({ id, modalOpen, setModal, viewDetail }: IViewDetailProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const { openScroll } = useBodyScrollLock();
 
   const {
     title,
@@ -209,6 +219,7 @@ const DetailModal = ({ id, modalOpen, setModal, viewDetail }: IViewDetailProps) 
   useEffect(() => {
     const outsideClick = (e: MouseEvent) => {
       if (modalOpen && modalRef.current && !modalRef.current.contains(e.target as Node)) {
+        openScroll();
         setModal(false);
       }
     };
@@ -219,13 +230,16 @@ const DetailModal = ({ id, modalOpen, setModal, viewDetail }: IViewDetailProps) 
   }, [modalOpen, setModal]);
 
   const onClickCloseBtn = () => {
+    openScroll();
     setModal(false);
   };
 
   return (
-    <BackgroundModal>
-      <ModalBox className={modalOpen ? 'open' : undefined} ref={modalRef}></ModalBox>
-    </BackgroundModal>
+    <>
+      <Container className={modalOpen ? 'modal-visible' : 'modal-hidden'}>
+        <ModalBox ref={modalRef}></ModalBox>
+      </Container>
+    </>
   );
 };
 

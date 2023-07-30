@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import useBodyScrollLock from '../Modal/useBodyScrollLock';
 
 const MoreDetailBtnBox = styled.div`
   margin-top: 35px;
@@ -52,11 +53,14 @@ interface IMoreDetailProps {
 }
 
 const MoreDetailBtn = ({ setModal }: IMoreDetailProps) => {
+  const { lockScroll } = useBodyScrollLock();
+
   return (
     <MoreDetailBtnBox>
       <button
         className='more-btn'
         onClick={() => {
+          lockScroll();
           setModal(true);
         }}
       >

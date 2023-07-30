@@ -270,7 +270,7 @@ const ProjectArticle = ({
           </FeaturesAndLink>
         </RightBox>
       </ProjectArticleBox>
-      {modalOpen && <DetailModal id={id} viewDetail={viewDetail} modalOpen={modalOpen} setModal={setModal} />}
+      <DetailModal id={id} viewDetail={viewDetail} modalOpen={modalOpen} setModal={setModal} />
     </>
   );
 };
