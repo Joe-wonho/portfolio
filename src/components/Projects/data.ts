@@ -93,16 +93,21 @@ const data: IProjectData[] = [
     deployTxt: 'Blog',
     modalData: {
       title: 'Blog(블로그) - CRUD가 가능한 블로그',
-      introContent: [''],
+      introContent: [
+        'velog를 모티브로 디자인한 블로그입니다.',
+        '사용하고 싶었던 라이브러리나 지난번에 기능적으로 아쉬웠던 부분을 보완하고자 제작하였습니다.',
+      ],
       deployLink: '',
       deployTxt: 'Blog',
       githubLink: 'https://github.com/Joe-wonho/blog-side',
       githubTxt: 'github.com/Joe-wonho/blog',
       stacks: 'React, Recoil, TypeScript, Qulil, Styled-components, Axios, AmazonS3, Prettier',
 
-      featuresContent: [],
-      // ⦁ 아티스트 검색 기능
-      backgroundContent: [' 지난번 팀 프로젝트 때 아쉬운 부분이 있어 보완하고자 제작하게 되었습니다.'],
+      featuresContent: ['⦁ 로그인 / 회원가입', '⦁ 회원 정보 수정, 탈퇴', '⦁ 글 조회, 작성, 수정, 삭제'],
+      backgroundContent: [
+        ' 지난번 팀 프로젝트 때 아쉬운 부분이 있어 보완하고자 제작하게 되었습니다.',
+        '지난 번 프로젝트를 같이 진행한 백엔드 팀원분과 기회가 되어 기능적인 부분을 보완하였습니다.',
+      ],
     },
   },
 ];

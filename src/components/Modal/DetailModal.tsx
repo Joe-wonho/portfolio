@@ -148,20 +148,28 @@ const TableBox = styled.table`
     padding: 8px 0;
   }
   td {
-    font-size: 14px;
+    font-size: 13px;
     border: 1px solid #dddddd;
     padding: 8px 6px;
     .td-p {
       padding: 4px 0;
+      line-height: 15px;
     }
+  }
+  .td-center {
+    text-align: center;
+    min-width: 100px;
   }
   @media all and (max-width: 767px) {
     th {
-      font-size: 15px;
+      font-size: 13px;
     }
     td {
-      font-size: 14px;
-      line-height: 15px;
+      font-size: 12px;
+      line-height: 14px;
+    }
+    .td-center {
+      min-width: 80px;
     }
   }
 `;
@@ -173,7 +181,7 @@ interface IModalDataProps {
   modalData: IModalData;
 }
 
-const DetailModal = ({ id, modalOpen, setModal, modalData }: IModalDataProps) => {
+const DetailModal = ({ modalOpen, setModal, modalData }: IModalDataProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { openScroll } = useBodyScrollLock();
@@ -203,12 +211,6 @@ const DetailModal = ({ id, modalOpen, setModal, modalData }: IModalDataProps) =>
       document.removeEventListener('mousedown', outsideClick);
     };
   }, [modalOpen, setModal]);
-
-  // const onClickCloseBtn = () => {
-  //   openScroll();
-  //   setModal(false);
-  //   modalRef.current?.scrollTo(0, 0);
-  // };
 
   return (
     <>
@@ -247,6 +249,94 @@ const DetailModal = ({ id, modalOpen, setModal, modalData }: IModalDataProps) =>
                     <img src={checkImg} alt='check-img' />
                     보완한 점
                   </p>
+                  <TableBox>
+                    <thead>
+                      <tr>
+                        <th>보완점</th>
+                        <th>설명</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className='td-center'>Typescript 사용</td>
+                        <td>
+                          <p className='td-p'>
+                            컴파일 과정에서 오류를 잡아낼 수 있고 타입의 안정성을 통해 협업에 효율적이라고 생각하여
+                            사용했습니다.
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className='td-center'>
+                          <p className='td-p'>에디터 사용</p>
+                        </td>
+                        <td>
+                          <p className='td-p'>
+                            지난번 textarea 태그의 속성 중 contenteditable 속성을 통해 에디터를 구현하는데 어려움을
+                            겪었습니다. 그래서 이번엔 rich-text editor 인 quill 사용하여 웹 에디터의 사용법을
+                            익혔습니다.
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className='td-center'>
+                          <p className='td-p'>로그인 및 인증</p>
+                        </td>
+                        <td>
+                          <p className='td-p'>
+                            지난번에 프론트에서 자체적으로 토큰을 처리했기에 가장 아쉬웠던 부분입니다. 이번엔 토큰을
+                            서버에서 관리하며 axios intercepter를 이용한 토큰의 재발급과 만료 처리를 하였습니다.
+                            반복되는 코드를 줄이고 axios(서버와의 통신)에 대한 것을 더 잘 알게 되었습니다.
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className='td-center'>
+                          <p className='td-p'>OAuth 2.0 사용</p>
+                        </td>
+                        <td>
+                          <p className='td-p'>
+                            지난번 소셜로그인 기능을 처리하지 못해 이번에는 카카오 로그인 기능을 사용하였습니다. OAuth
+                            2.0에 대한 전반적인 흐름과 처리방식에 대해 알게 되었습니다.
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className='td-center'>
+                          <p className='td-p'>custom axios 사용</p>
+                        </td>
+                        <td>
+                          <p className='td-p'>
+                            매 요청마다 헤더에 일일이 썼던 코드를 최소화 하기 위해 axios create , axios intercepter
+                            사용하였습니다.
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className='td-center'>
+                          <p className='td-p'>스켈레톤 스크린(Skeleton Screen)</p>
+                        </td>
+                        <td>
+                          <p className='td-p'>
+                            메인 페이지의 모든 Postings를 불러올 때 사용자 경험을 고려해 사용했습니다. 하지만 블로그와
+                            같은 정적 페이지의 같은 경우 잘 어울리지 않다고 깨달았습니다. 프로젝트의 성향에 따라
+                            사용자의 경험을 어떻게 개선할 지에 대한 생각을 하게 되었습니다.
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className='td-center'>
+                          <p className='td-p'>이미지 업로드 방법 </p>
+                        </td>
+                        <td>
+                          <p className='td-p'>
+                            지난번엔 Base64로 인코딩 된 이미지 파일을 그냥 넘겼지만 이번엔 s3를 사용해 이미지 url로 변환
+                            후 이미지 업로드 처리.
+                          </p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </TableBox>
                 </>
               ) : (
                 <>
