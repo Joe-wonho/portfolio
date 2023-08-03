@@ -7,9 +7,6 @@ const FooterBox = styled.footer`
   width: 100%;
   height: 140px;
   border-top: 2px solid #395b64;
-  position: absolute;
-  left: 0;
-  bottom: 0;
 `;
 
 const FooterBody = styled.div`

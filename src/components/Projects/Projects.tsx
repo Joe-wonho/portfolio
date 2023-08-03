@@ -90,9 +90,9 @@ const Projects = () => {
               features={el.features}
               githubLink={el.githubLink}
               githubTxt={el.githubTxt}
-              deploLink={el.deploLink}
-              deploTxt={el.deploTxt}
-              viewDetail={el.viewDetail}
+              deployLink={el.deployLink}
+              deployTxt={el.deployTxt}
+              modalData={el.modalData}
             />
           ))}
         </ProjectSection>

@@ -216,9 +216,9 @@ const ProjectArticle = ({
   features,
   githubLink,
   githubTxt,
-  deploLink,
-  deploTxt,
-  viewDetail,
+  deployLink,
+  deployTxt,
+  modalData,
 }: IProjectData) => {
   const [modalOpen, setModal] = useState(false);
 
@@ -260,8 +260,8 @@ const ProjectArticle = ({
             <div className='deployment'>
               <img className='check' src={check} alt='check' />
               <span className='deplo-txt'>배포 링크</span>
-              <a className='link deplo-link' rel='noreferrer' href={deploLink} target='_blank'>
-                {deploTxt}
+              <a className='link deplo-link' rel='noreferrer' href={deployLink} target='_blank'>
+                {deployTxt}
               </a>
             </div>
             <div className='more-btn'>
@@ -270,7 +270,7 @@ const ProjectArticle = ({
           </FeaturesAndLink>
         </RightBox>
       </ProjectArticleBox>
-      <DetailModal id={id} viewDetail={viewDetail} modalOpen={modalOpen} setModal={setModal} />
+      <DetailModal id={id} modalData={modalData} modalOpen={modalOpen} setModal={setModal} />
     </>
   );
 };
