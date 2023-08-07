@@ -89,7 +89,7 @@ const data: IProjectData[] = [
     features: `CRUD가 가능한 기본 기능을 갖춘 블로그입니다. 지난번 프로젝트 때의 아쉬움이 남아 제작하였습니다. 어떤 점을 보완했는지는 More Details 버튼을 눌러 확인해주세요!`,
     githubLink: 'https://github.com/Joe-wonho/blog-side',
     githubTxt: 'github.com/Joe-wonho/blog',
-    deployLink: '',
+    deployLink: 'http://sideblog.s3-website.ap-northeast-2.amazonaws.com',
     deployTxt: 'Blog',
     modalData: {
       title: 'Blog(블로그) - CRUD가 가능한 블로그',
@@ -97,7 +97,7 @@ const data: IProjectData[] = [
         'velog를 모티브로 디자인한 블로그입니다.',
         '사용하고 싶었던 라이브러리나 지난번에 기능적으로 아쉬웠던 부분을 보완하고자 제작하였습니다.',
       ],
-      deployLink: '',
+      deployLink: 'http://sideblog.s3-website.ap-northeast-2.amazonaws.com',
       deployTxt: 'Blog',
       githubLink: 'https://github.com/Joe-wonho/blog-side',
       githubTxt: 'github.com/Joe-wonho/blog',
